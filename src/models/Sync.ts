@@ -1,7 +1,7 @@
 import axios, { AxiosPromise } from "axios";
 
 interface HasId {
-    id: number;
+    id?: number;
 }
 
 export class Sync<T extends HasId> {
@@ -14,7 +14,7 @@ export class Sync<T extends HasId> {
     save(data: T): AxiosPromise {
         const { id } = data;
 
-        if ('id') {
+        if (id) {
             //put
             return axios.put(`${this.rootUrl}/${id}`, data);
         } else {
